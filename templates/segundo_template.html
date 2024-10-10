@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        Segundo template
+    </h1>
+    <h2>{{fecha_actual}}</h2>
+    <ul>
+        <li>esto es una li de ul</li>
+    </ul>
+    <ol>
+        <li>esto es una li de ol</li>
+    </ol>
+    <p>listado</p>
+    <ul>
+        {% for num in numeros %}
+        {% if num > 5 %}
+        <li>{{num}}</li>
+        {% elif num == 5%}
+        <li>Soy el mejor numero ... El 5</li>
+        {% else %}
+        <li>Soy menor a 5</li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+</html>
