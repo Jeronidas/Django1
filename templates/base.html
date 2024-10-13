@@ -7,9 +7,9 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>
-            {% block title_head
-                 %}
-            {% endblock %}
+            {% block title_head %}
+            Template Base
+            {% endblock title_head %}
         </title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -18,24 +18,31 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
+         {% block link_stylesheet_head %}
         <link href={% static "css/styles.css"%} rel="stylesheet" />
+        {% endblock link_stylesheet_head %}
     </head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <a class="btn btn-primary" href="#signup">Sign Up</a>
+                <a class="navbar-brand" href={% url "inicio:inicio" %}>Inicio</a>
+                <a class="navbar-brand" href={% url "inicio:primer_template" %}>Primer Template</a>
+                <a class="navbar-brand" href={% url "inicio:segundo_template" %}>Segundo Template</a>
+                {% comment %} <a class="btn btn-primary" href="#signup">Sign Up</a> {% endcomment %}
             </div>
         </nav>
         <!-- Masthead-->
+         {% block header %}
         <header class="masthead">
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Soy la pantalla de inicio</h1>
+                            <h1 class="mb-5">
+                            {% block h1_header %}Soy la Base{% endblock h1_header %}
+                            </h1>
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
@@ -49,6 +56,10 @@
                 </div>
             </div>
         </header>
+        {% endblock header %}
+        <main>
+            {% block main %}{% endblock main %}
+        </main>
         <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">

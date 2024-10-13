@@ -9,7 +9,7 @@ def mi_vista(request):
 
 def inicio(request):
     # return HttpResponse('<h1>Soy la pantalla de inicio </h1>')
-    return render(request, 'index.html')
+    return render(request, 'inicio/index.html')
 
 def vista_datos1(request, nombre):
     nombre_mayuscula = nombre.upper()    
@@ -41,6 +41,8 @@ def segundo_template(request):
         'numeros': list(range(1, 11))
     }
     
+    
+    
     # v1
     # with open(r'templates\segundo_template.html') as archivo_del_template:
     #     template = Template(archivo_del_template.read())
@@ -53,10 +55,10 @@ def segundo_template(request):
     # return HttpResponse(render_template)
     
     # v3
-    return render(request, 'segundo_template.html', datos)
+    return render(request, 'inicio/segundo_template.html', datos)
 
 def crear_auto(request, marca, modelo, anio):
     
      auto = Auto(marca=marca, modelo=modelo, anio=anio)
      auto.save()
-     return render(request, 'creacion_auto_correcta.html', {'auto': auto})
+     return render(request, 'inicio/creacion_auto_correcta.html', {'auto': auto})
