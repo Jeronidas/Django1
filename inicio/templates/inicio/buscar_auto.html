@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block tetle_head %}
+Buscar Auto
+{% endblock tetle_head %}
+{% block h1_header %}Buscar Auto{% endblock h1_header %}
+{% block main %}
+
+<form action={% url "inicio:buscar_auto" %}></form>
+
+{% endblock main %}

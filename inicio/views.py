@@ -62,3 +62,15 @@ def crear_auto(request, marca, modelo, anio):
      auto = Auto(marca=marca, modelo=modelo, anio=anio)
      auto.save()
      return render(request, 'inicio/creacion_auto_correcta.html', {'auto': auto})
+ 
+def buscar_auto(request):
+
+     return render(request, 'inicio/buscar_auto.html', {'auto':''})
+
+def crear_auto(request):
+
+    print('Request', request)
+    print('GET', request.GET)
+    print('POST', request.POST)
+
+    return render(request, 'inicio/crear_auto.html', {'auto':''})
