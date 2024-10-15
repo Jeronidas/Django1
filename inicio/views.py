@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.template import Template, Context, loader
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from inicio.models import Auto
+from inicio.forms import CrearAutoFormulario, BuscarAutoFormulario
 
 def mi_vista(request):
     return HttpResponse('Hola soy la vista')
@@ -64,13 +65,35 @@ def crear_auto(request, marca, modelo, anio):
      return render(request, 'inicio/creacion_auto_correcta.html', {'auto': auto})
  
 def buscar_auto(request):
+    
+    formulario = BuscarAutoFormulario(request.GET)
+    if formulario.is_valid():
+        marca = formulario.cleaned_data.get('marca')    
+        autos = Auto.objects.filter(marca__icontains=marca)
+    else:
+        autos = Auto.objects.all()
 
-     return render(request, 'inicio/buscar_auto.html', {'auto':''})
+    return render(request, 'inicio/buscar_auto.html', {'autos': autos, 'form': formulario})
 
 def crear_auto(request):
 
-    print('Request', request)
-    print('GET', request.GET)
-    print('POST', request.POST)
+    # print('Request', request)
+    # print('GET', request.GET)
+    # print('POST', request.POST)
+    
+    
+    formulario = CrearAutoFormulario()
+    
+    if request.method == 'POST':
+        # auto = Auto(marca=request.POST.get('marca'), modelo=request.POST.get('modelo'), anio=request.POST.get('anio'))
+        # auto.save()
 
-    return render(request, 'inicio/crear_auto.html', {'auto':''})
+        formulario = CrearAutoFormulario(request.POST)
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            auto = Auto(marca=request.POST.get('marca'), modelo=request.POST.get('modelo'), anio=request.POST.get('anio'))
+            auto.save()
+            return redirect('inicio:buscar_auto')
+            
+        
+    return render(request, 'inicio/crear_auto.html', {'form': formulario})

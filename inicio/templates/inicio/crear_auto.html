@@ -8,11 +8,25 @@ Crear Auto
 
 <form action={% url "inicio:crear_auto" %} method="POST">
     {% csrf_token %}
-
-    <input type="text" name="modelo">
-
-    <input type="submit" value="Enviar">
+    {% comment %} 
+    <p>
+        Marca:
+        <input type="text" name="marca" placeholder="Marca">
+    </p>
+    <p>
+        Modelo:
+        <input type="text" name="modelo">
+    </p>
+    <p>
+        Anio:
+        <input type="number " name="anio">
+    </p>
     <button>Enviar</button>
+     {% endcomment %}
+    
+    {{form}}
+
+    <input type="submit", value="Enviar">
     
 </form>
 

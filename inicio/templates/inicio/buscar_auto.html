@@ -6,6 +6,19 @@ Buscar Auto
 {% block h1_header %}Buscar Auto{% endblock h1_header %}
 {% block main %}
 
-<form action={% url "inicio:buscar_auto" %}></form>
+<form action={% url "inicio:buscar_auto" %}>
+    {{form}}
+    <input type="submit">
+</form>
+
+{% if autos %}
+<ul>
+    {% for auto in autos %}
+    <li>{{auto}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No hay autos registrados.</p>
+{% endif %} 
 
 {% endblock main %}
