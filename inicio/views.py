@@ -68,8 +68,9 @@ def buscar_auto(request):
     
     formulario = BuscarAutoFormulario(request.GET)
     if formulario.is_valid():
-        marca = formulario.cleaned_data.get('marca')    
-        autos = Auto.objects.filter(marca__icontains=marca)
+        marca = formulario.cleaned_data.get('marca')
+        modelo = formulario.cleaned_data.get('modelo') 
+        autos = Auto.objects.filter(marca__icontains=marca, modelo__icontains=modelo)
     else:
         autos = Auto.objects.all()
 
